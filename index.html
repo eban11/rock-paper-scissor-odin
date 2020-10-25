@@ -7,19 +7,19 @@
   </head>
   <body>
     <script>
-      const computerPlay = () => {
-        const choices = ["rock", "paper", "scissors"];
+      const getComputerChoice = () => {
+        const choices = ["rock", "paper", "scissor"];
         const index = Math.floor(Math.random() * choices.length);
         return choices[index];
       };
 
-      const playRound = (playerSelection, computerPlay) => {
-        if (playerSelection === computerPlay) {
+      const playRound = (playerSelection, getComputerChoice) => {
+        if (playerSelection === getComputerChoice) {
           return 0;
         } else if (
-          (playerSelection === "rock" && computerPlay === "paper") ||
-          (playerSelection === "paper" && computerPlay === "scissors") ||
-          (playerSelection === "scissors" && computerPlay === "rock")
+          (playerSelection === "rock" && getComputerChoice === "paper") ||
+          (playerSelection === "paper" && getComputerChoice === "scissor") ||
+          (playerSelection === "scissor" && getComputerChoice === "rock")
         ) {
           return -1;
         } else {
@@ -27,9 +27,9 @@
         }
       };
 
-      const playerSelection = () => {
+      const getPlayerChoice = () => {
         return prompt(
-          'choose your weapon: "rock", "paper", "scissors"?'
+          'choose your weapon: "rock", "paper", "scissor"?'
         ).toLowerCase();
       };
 
@@ -37,8 +37,8 @@
         let computer = 0;
         let player = 0;
         for (let i = 0; i < 5; i++) {
-          const computerChoice = computerPlay();
-          const playerChoice = playerSelection();
+          const computerChoice = getComputerChoice();
+          const playerChoice = getPlayerChoice();
           let round = playRound(playerChoice, computerChoice);
           if (round === 0) {
             console.log("Draw");
@@ -50,6 +50,7 @@
             player += 1;
           }
         }
+
         console.log(
           `With overall score ${
             player > computer
