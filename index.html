@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const computerPlay = () => {
+        const choices = ["rock", "paper", "scissors"];
+        const index = Math.floor(Math.random() * choices.length);
+        return choices[index];
+      };
+
+      const playRound = (playerSelection, computerPlay) => {
+        if (playerSelection === computerPlay) {
+          return 0;
+        } else if (
+          (playerSelection === "rock" && computerPlay === "paper") ||
+          (playerSelection === "paper" && computerPlay === "scissors") ||
+          (playerSelection === "scissors" && computerPlay === "rock")
+        ) {
+          return -1;
+        } else {
+          return 1;
+        }
+      };
+
+      const playerSelection = () => {
+        return prompt(
+          'choose your weapon: "rock", "paper", "scissors"?'
+        ).toLowerCase();
+      };
+
+      const game = () => {
+        let computer = 0;
+        let player = 0;
+        for (let i = 0; i < 5; i++) {
+          const computerChoice = computerPlay();
+          const playerChoice = playerSelection();
+          let round = playRound(playerChoice, computerChoice);
+          if (round === 0) {
+            console.log("Draw");
+          } else if (round === -1) {
+            console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
+            computer += 1;
+          } else {
+            console.log(`You Win! ${playerChoice} beats ${computerChoice}`);
+            player += 1;
+          }
+        }
+        console.log(
+          `With overall score ${
+            player > computer
+              ? "You won!"
+              : player === computer
+              ? "it is a draw."
+              : "Computer won!"
+          }`
+        );
+      };
+
+      game();
+    </script>
+  </body>
+</html>
