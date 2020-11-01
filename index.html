@@ -3,66 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Rock Paper Scissor</title>
   </head>
   <body>
-    <script>
-      const getComputerChoice = () => {
-        const choices = ["rock", "paper", "scissor"];
-        const index = Math.floor(Math.random() * choices.length);
-        return choices[index];
-      };
-
-      const playRound = (playerSelection, getComputerChoice) => {
-        if (playerSelection === getComputerChoice) {
-          return 0;
-        } else if (
-          (playerSelection === "rock" && getComputerChoice === "paper") ||
-          (playerSelection === "paper" && getComputerChoice === "scissor") ||
-          (playerSelection === "scissor" && getComputerChoice === "rock")
-        ) {
-          return -1;
-        } else {
-          return 1;
-        }
-      };
-
-      const getPlayerChoice = () => {
-        return prompt(
-          'choose your weapon: "rock", "paper", "scissor"?'
-        ).toLowerCase();
-      };
-
-      const game = () => {
-        let computer = 0;
-        let player = 0;
-        for (let i = 0; i < 5; i++) {
-          const computerChoice = getComputerChoice();
-          const playerChoice = getPlayerChoice();
-          let round = playRound(playerChoice, computerChoice);
-          if (round === 0) {
-            console.log("Draw");
-          } else if (round === -1) {
-            console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
-            computer += 1;
-          } else {
-            console.log(`You Win! ${playerChoice} beats ${computerChoice}`);
-            player += 1;
-          }
-        }
-
-        console.log(
-          `With overall score ${
-            player > computer
-              ? "You won!"
-              : player === computer
-              ? "it is a draw."
-              : "Computer won!"
-          }`
-        );
-      };
-
-      game();
-    </script>
+    <header>
+      <h1>Rock Paper Scissor</h1>
+    </header>
+    <main>
+      <section class="score-board">
+        <span class="flag user-flag">User</span>
+        <span class="user-score">0</span> : <span class="comp-score">0</span>
+        <span class="flag comp-flag">Comp</span>
+      </section>
+      <h1 class="info">Welcome</h1>
+      <section class="choices">
+        <div class="choice rock" data-choice="rock">
+          <img src="Assets/rock.png" alt="rock" data-choice="rock" />
+        </div>
+        <div class="choice paper" data-choice="paper">
+          <img src="Assets/paper.png" alt="paper" data-choice="paper" />
+        </div>
+        <div class="choice scissor" data-choice="scissor">
+          <img src="Assets/scissor.png" alt="scissor" data-choice="scissor" />
+        </div>
+      </section>
+      <small>Make your move.</small>
+    </main>
+    <footer>
+      <small>Eyob Alemu</small>
+      <hr />
+    </footer>
+    <script src="index.js"></script>
   </body>
 </html>
